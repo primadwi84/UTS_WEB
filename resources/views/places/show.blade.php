@@ -7,11 +7,12 @@
                     <div class="card-body">
                         <h5 class="card-title">{{$place->Desa}}</h5>
                         <h5 class="card-title">{{$place->Kabupaten}}</h5>
+                        <h5 class="card-title">{{$place->provinsi->provinsi}}</h5>
                         <p class="card-text">Sehat: {{$place->Sehat}}</p>
                         <p class="card-text">Sakit: {{$place->Sakit}}</p>
                         <p class="card-text">Dirawat: {{$place->Dirawat}}</p>
                         <p class="card-text">Sembuh: {{$place->Sembuh}}</p>
-                        <p class="card-text">Zona: {{$place->Zona}}</p>
+                        <p class="card-text">Zona: {{$place->zona->zona}}</p>
 
                         <a href="{{$place->id}}/edit" class="btn btn-primary">Edit</a>
                         <form action="/places/{{ $place->id }}" method="post" class="d-inline">

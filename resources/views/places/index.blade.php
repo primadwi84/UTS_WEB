@@ -78,6 +78,7 @@
                                     <th scope="col">Sakit</th>
                                     <th scope="col">Dirawat</th>
                                     <th scope="col">Sembuh</th>     
+                                    <!-- <th scope="col">Zona</th>      -->
                                     <th scope="col">Zona</th>     
                                     <th scope="col">Detail</th>     
                                 </tr>      
@@ -93,7 +94,8 @@
                                 <td>{{$place->Sakit}}</td>
                                 <td>{{$place->Dirawat}}</td>
                                 <td>{{$place->Sembuh}}</td>
-                                <td>{{$place->Zona}}</td>
+                                <!-- <td>{{$place->Zona}}</td> -->
+                                <td>{{$place->zona->zona}}</td>
                                 <td>
                                 <a href="/places/{{$place->id}}" class="badge badge-info">detail</a>
                                 </td>

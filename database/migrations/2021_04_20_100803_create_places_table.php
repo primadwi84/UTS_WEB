@@ -22,7 +22,7 @@ class CreatePlacesTable extends Migration
             $table->integer('Sakit');
             $table->integer('Dirawat');
             $table->integer('Sembuh');
-            $table->string('Zona');
+            // $table->string('Zona');
             $table->timestamps();
         });
     }

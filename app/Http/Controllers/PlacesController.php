@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Place;
 use App\Models\Provinsi;
+use App\Models\Zona;
 use Illuminate\Support\Facades\DB; 
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class PlacesController extends Controller
     public function index()
     {
 
-        $places = Place::with('provinsi')->latest()->paginate(100);
+        $places = Place::with('provinsi','zona')->latest()->paginate(100);
         return view('places.index', compact('places'));
 
     }
@@ -29,7 +30,8 @@ class PlacesController extends Controller
     public function create()
     {
         $provinsis = Provinsi::all();
-        return view('places.create',compact('provinsis'));
+        $zonas = Zona::all();
+        return view('places.create',compact('provinsis','zonas'));
     }
     
 
@@ -51,7 +53,8 @@ class PlacesController extends Controller
             'Sakit' => 'required',
             'Dirawat' => 'required',
             'Sembuh' => 'required',
-            'Zona' => 'required'
+            // 'Zona' => 'required',
+            'zona_id' => 'required'
             ],
             [
                 'Desa.required'=>'Nama Desa Harus Diisi!',
@@ -61,7 +64,8 @@ class PlacesController extends Controller
                 'Sakit.required'=>'Jumlah Penduduk Sakit Harus Diisi!',
                 'Dirawat.required'=>'Jumlah Penduduk Dirawat Harus Diisi!',
                 'Sembuh.required'=>'Jumlah Penduduk Sembuh Harus Diisi!',
-                'Zona.required'=>'Keterangan Zona Harus Diisi'
+                // 'Zona.required'=>'Keterangan Zona Harus Diisi',
+                'zona_id.required'=>'Zona Harus Dipilih'
             ]
             );
         Place::create($request->all());
@@ -88,8 +92,10 @@ class PlacesController extends Controller
     public function edit(Place $place)
     {
         $provinsis = Provinsi::all();
+        $zonas = Zona::all();
         Place::with('provinsi');
-        return view('places.edit',compact('place', 'provinsis'));
+        Zona::with('zona');
+        return view('places.edit',compact('place', 'provinsis','zonas'));
     } 
 
     /**
@@ -109,7 +115,8 @@ class PlacesController extends Controller
             'Sakit' => 'required',
             'Dirawat' => 'required',
             'Sembuh' => 'required',
-            'Zona' => 'required'
+            // 'Zona' => 'required',
+            'zona_id' => 'required'
             ],
             [
                 'Desa.required'=>'Nama Desa Harus Diisi!',
@@ -119,7 +126,8 @@ class PlacesController extends Controller
                 'Sakit.required'=>'Jumlah Penduduk Sakit Harus Diisi!',
                 'Dirawat.required'=>'Jumlah Penduduk Dirawat Harus Diisi!',
                 'Sembuh.required'=>'Jumlah Penduduk Sembuh Harus Diisi!',
-                'Zona.required'=>'Keterangan Zona Harus Diisi'
+                // 'Zona.required'=>'Keterangan Zona Harus Diisi',
+                'zona_id.required'=>'Zona Harus Dipilih'
             ]
             );
 
@@ -132,7 +140,8 @@ class PlacesController extends Controller
                 'Sakit' => $request->Sakit,
                 'Dirawat' => $request->Dirawat,
                 'Sembuh' => $request->Sembuh,
-                'Zona' => $request->Zona
+                // 'Zona' => $request->Zona,
+                'zona_id' => $request->zona_id
             ]);
         return redirect('/places')->with('status', 'Data Desa Berhasil Diubah!');
     }

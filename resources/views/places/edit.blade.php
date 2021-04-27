@@ -64,14 +64,26 @@
                         <div class="invalid-feedback">{{$message}}</div>
                         @enderror
                     </div>
-
+<!-- 
                     <div class="form-group">
                         <label for="Zona">Zona</label>
                         <input type="string" class="form-control @error('Zona') is-invalid @enderror" id="Zona" placeholder="Masukkan Zona (Hijau/Merah)" name="Zona" value="{{$place->Zona}}">
                         @error('Zona')
                         <div class="invalid-feedback">{{$message}}</div>
                         @enderror
+                    </div> -->
+
+                    <div class="form-group">
+                        <label for="Zona">Zona</label>
+                        <select class="form-control select2" style="width:100%;" name="zona_id" id="zona_id">
+                        <option disabled value>Pilih Zona</option>
+                        <option value="{{$place->zona_id}}">{{$place->zona->zona}}</option>
+                        @foreach ($zonas as $item)
+                        <option value="{{$item->id}}">{{$item->zona}}</option>
+                        @endforeach
+                        </select>
                     </div>
+                   
                    
                     <button type="submit" class="btn btn-primary">Ubah Data!</button>
                 </form>

@@ -50,7 +50,7 @@
                                     <td>{{$place->Sakit}}</td>
                                     <td>{{$place->Dirawat}}</td>
                                     <td>{{$place->Sembuh}}</td>
-                                    <td>{{$place->Zona}}</td>
+                                    <td>{{$place->zona->zona}}</td>
                                     <td>
                                     <a href="/places/{{$place->id}}" class="badge badge-info">detail</a>
                                     </td>
